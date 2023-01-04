@@ -1,12 +1,9 @@
-import { Component } from "react"
-import css from "../ImageGalleryItem/.ImageGalleryItem.module.css"
+// import { Component } from "react"
+import css from '../ImageGalleryItem/ImageGalleryItem.module.css';
 
-export class ImageGalleryItem extends Component {
-    render(){
-        return (
-            <li className={css.ImageGalleryItem}>
-  <img className={css.ImageGalleryItemImage} src="" alt="search image" />
-</li>
-        )
-    }
-  }
+
+export const ImageGalleryItem = ({ image, clickHandler }) =>  (
+        <li className={css.ImageGalleryItem} onClick={clickHandler}>
+           <img className={css.ImageGalleryItemImage} src={image.webformatURL} data-modal={image.largeImageURL} alt={image.tags} />
+        </li>
+  )

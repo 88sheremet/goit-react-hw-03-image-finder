@@ -1,14 +1,12 @@
-import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
-import { Component } from "react";
-import css from "../ImageGallery/ImageGallery/module.css"
+import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
+import css from '../ImageGallery/ImageGallery.module.css';
 
-export class ImageGalley extends Component {
-    render(){
-        return (
-            <ul className={css.ImageGallery}>
-                <ImageGalleryItem/>
-  {/* <!-- Набор <li> с изображениями --> */}
-</ul>
-        )
-    }
-}
+export const ImageGallery = ({ images, clickHandler }) => {
+  return (
+    <ul className={css.ImageGallery}>
+      {images.map(image => {
+        return (<ImageGalleryItem key={image.id} image={image} clickHandler={clickHandler}/>)
+      })}
+    </ul>
+  );
+};
