@@ -2,17 +2,11 @@ import PropTypes from 'prop-types';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from '../ImageGallery/ImageGallery.module.css';
 
-export const ImageGallery = ({ images, handleClick }) => {
+export const ImageGallery = ({ images }) => {
   return (
     <ul className={css.ImageGallery}>
       {images.map(image => {
-        return (
-          <ImageGalleryItem
-            key={image.id}
-            image={image}
-            handleClick={handleClick}
-          />
-        );
+        return <ImageGalleryItem key={image.id} image={image} />;
       })}
     </ul>
   );
@@ -24,5 +18,4 @@ ImageGallery.propTypes = {
       id: PropTypes.number.isRequired,
     })
   ),
-  handleClick: PropTypes.func.isRequired,
 };

@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
+import { createPortal } from 'react-dom';
 import css from '../Modal/Modal.module.css';
+
+const modalRoot = document.getElementById('modal-root');
 
 export class Modal extends Component {
   onEscape = e => {
     if (e.key === 'Escape') {
-      this.props.hideModal();
+      this.props.onCloseModal();
     }
   };
 
   onClick = e => {
-    if (e.target === e.currentTarget) this.props.hideModal();
+    if (e.target === e.currentTarget) this.props.onCloseModal();
   };
 
   componentDidMount() {
@@ -22,18 +25,18 @@ export class Modal extends Component {
   }
 
   render() {
-    return (
+    return createPortal(
       <div className={css.Overlay} onClick={this.onClick}>
         <div className={css.Modal}>
-          <img src={this.props.imgUrl} alt="" />
+          <img src={this.props.srcModal} alt={this.props.altModal} />
         </div>
-      </div>
+      </div>,
+      modalRoot
     );
   }
 }
 
 Modal.propTypes = {
-  imgUrl: PropTypes.string.isRequired,    
-  hideModal: PropTypes.func.isRequired, 
-  onClick: PropTypes.func.isRequired,
+  srcModal: PropTypes.string.isRequired,
+  altModal: PropTypes.string.isRequired,
 };
